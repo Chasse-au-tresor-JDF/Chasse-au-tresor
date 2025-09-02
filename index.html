@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ordre de fabrication - Chasse au trésor</title>
+<style>
+body { font-family: Arial, sans-serif; background: #d9d9d9; padding: 30px; }
+.ordre { max-width: 900px; margin: auto; background: #fff; border: 4px solid #000; padding: 20px; border-radius: 5px; box-shadow: 8px 8px 15px rgba(0,0,0,0.3); }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.header h1 { flex-grow: 1; text-align: center; margin: 0; color: #1a4f8b; border-bottom: 3px solid #000; padding-bottom: 5px; }
+.logo { height: 50px; }
+.formulaire { margin-bottom: 20px; padding: 10px; background: #f2f2f2; border: 1px solid #ccc; border-radius: 5px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 0px; font-size: 16px; }
+th, td { border: 1px solid #000; padding: 12px; text-align: left; }
+th { background: #eee; }
+input { padding: 6px; border: 1px solid #666; border-radius: 3px; background: #f9f9f9; font-size:16px; }
+button { padding: 6px 12px; background: #1a4f8b; color: white; border: none; border-radius: 3px; cursor: pointer; font-weight: bold; margin-left: 5px; }
+button:hover { background: #12385f; }
+#motSecret { margin-top: 20px; font-size: 24px; font-weight: bold; text-align: center; }
+.final { text-align: center; font-size: 1.5em; color: #27ae60; font-weight: bold; padding: 20px; border: 3px solid #27ae60; background: #eaffea; display: none; margin-top: 20px; position: relative; }
+</style>
+</head>
+<body>
+<div class="ordre">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="DAHER.png" alt="Logo gauche" class="logo">
+    <h1>FICHE SUIVEUSE</h1>
+    <img src="Morane-Saulnier.png" alt="Logo droite" class="logo">
+  </div>
+
+  <!-- FORMULAIRE Nom + Prénom -->
+  <div class="formulaire">
+    <div style="display:flex; align-items:center;">
+      <input type="text" id="nomComplet" placeholder="Prénom Nom" style="flex-grow:1;">
+      <button onclick="validerIdentite()">Valider</button>
+    </div>
+    <p id="msgIdentite" style="color:red; font-weight:bold; margin-top:5px;"></p>
+  </div>
+
+  <!-- INFOS GENERALES -->
+  <table>
+    <tr>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Numéro d'ordre</div>
+        <div style="font-weight:bold; font-size:18px;">55000038</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Article</div>
+        <div style="font-weight:bold; font-size:18px;">9000400</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Désignation</div>
+        <div style="font-weight:bold; font-size:18px;">T850L10000000 Chasse au trésor</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Quantité</div>
+        <div style="font-weight:bold; font-size:18px;">1 PCE</div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Code document</div>
+        <div style="font-weight:bold; font-size:18px;">T850L10000000</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Statut gamme</div>
+        <div style="font-weight:bold; font-size:18px;">4</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Indice</div>
+        <div style="font-weight:bold; font-size:18px;">A</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">N°séquentiel</div>
+        <div style="font-weight:bold; font-size:18px;">0</div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Date/Heure début</div>
+        <div style="font-weight:bold; font-size:18px;">13.09.2025/8h</div>
+      </td>
+      <td style="text-align:center;">
+        <div style="font-size:12px;">Date/Heure fin</div>
+        <div style="font-weight:bold; font-size:18px;">13.09.2025/18h</div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ETAPES -->
+  <table>
+    <tr>
+      <th>Séquence</th><th>Opération</th><th>Localisation</th><th>Question</th><th>Action</th>
+    </tr>
+
+    <tr id="step1">
+      <td>0</td><td>1010</td><td>DASSAULT</td>
+      <td>Quelle est la couleur des lignes au sol dans le batiment?</td>
+      <td><input type="text" id="answer1"><button onclick="checkAnswer(1,'jaune')">Valider</button></td>
+    </tr>
+
+    <tr id="step2">
+      <td>0</td><td>1020</td><td>Airbus Helico</td>
+      <td>De quelle couleur sont les batis à droite au fond de l'allée?</td>
+      <td><input type="text" id="answer2"><button onclick="checkAnswer(2,['verts','vert'])">Valider</button></td>
+    </tr>
+
+    <tr id="step3">
+      <td>0</td><td>1030</td><td>Airbus Helico</td>
+      <td>Quelle est l'avant dernière lettre du nom du batiment ?</td>
+      <td><input type="text" id="answer3"><button onclick="checkAnswer(3,'i')">Valider</button></td>
+    </tr>
+
+    <tr id="step4">
+      <td>0</td><td>1040</td><td>Airbus Helico</td>
+      <td>De quelle couleur sont les pales de l'hélice de l'avion ?</td>
+      <td><input type="text" id="answer4"><button onclick="checkAnswer(4,'noir')">Valider</button></td>
+    </tr>
+
+    <tr id="step5">
+      <td>0</td><td>1050</td><td>Airbus Helico</td>
+      <td>Combien il y a t'il de pales sur une hélice ?</td>
+      <td><input type="text" id="answer5"><button onclick="checkAnswer(5,'cinq')">Valider</button></td>
+    </tr>
+
+    <tr id="step6">
+      <td>0</td><td>1060</td><td>Airbus Helico</td>
+      <td>Quel est l'outil lumineux qui permet d'aider les opérateurs à poser les tissus ?</td>
+      <td><input type="text" id="answer6"><button onclick="checkAnswer(6,'laser')">Valider</button></td>
+    </tr>
+  </table>
+
+  <!-- Mot secret -->
+  <div id="motSecret">Mot secret : <span id="mot"></span></div>
+
+  <!-- Message final -->
+  <div id="final" class="final">🎉 Bravo ! Tu as terminé l’ordre de fabrication et trouvé le trésor !</div>
+
+</div>
+
+<script>
+const lettres = {1:"A",2:"V",3:"I",4:"O",5:"N",6:"S"};
+let bonnesReponses = 0;
+const totalEtapes = Object.keys(lettres).length;
+let identiteOK = false;
+
+// URL de ton Apps Script (à remplacer par ton lien /exec)
+const scriptURL = "https://script.google.com/macros/s/AKfycbwVacmGFhbIdGWoBp1a4Cr0zV29KNYaosEne3drlxBBOPrOEmu-zV2ZlPY2ujaDjUke/exec";
+
+// Validation prénom/nom
+function validerIdentite(){
+  let nomComplet = document.getElementById("nomComplet").value.trim();
+  if(nomComplet === ""){
+    document.getElementById("msgIdentite").textContent = "⚠️ Merci de renseigner votre prénom et nom.";
+    identiteOK = false;
+  } else {
+    document.getElementById("msgIdentite").textContent = "✅ Identité validée, vous pouvez commencer !";
+    identiteOK = true;
+  }
+}
+
+// Validation des étapes
+function checkAnswer(step, correctAnswers){
+  if(!identiteOK){ alert("⚠️ Vous devez entrer votre prénom et nom avant de jouer !"); return; }
+  let inputField = document.getElementById("answer"+step);
+  let input = inputField.value.trim().toLowerCase();
+  if(!Array.isArray(correctAnswers)) correctAnswers=[correctAnswers];
+
+  if(correctAnswers.includes(input)){
+    document.getElementById("step"+step).style.backgroundColor = "#c8f7c5";
+    inputField.disabled = true;
+    document.getElementById("mot").textContent += lettres[step];
+    bonnesReponses++;
+    if(bonnesReponses === totalEtapes){
+      document.getElementById("final").style.display = "block";
+      envoyerNomPrenom();
+    }
+  } else {
+    alert("❌ Mauvaise réponse, essaie encore !");
+  }
+}
+
+// Envoi prénom/nom à Google Sheet
+function envoyerNomPrenom(){
+  let nomComplet = document.getElementById("nomComplet").value.trim();
+  const data = new URLSearchParams();
+  data.append("nomComplet", nomComplet);
+
+  fetch(scriptURL, { method: "POST", body: data })
+    .then(res => console.log("✅ Données envoyées au Google Sheet"))
+    .catch(err => console.error("Erreur :", err));
+}
+</script>
+</body>
+</html>
